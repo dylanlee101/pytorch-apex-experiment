@@ -5,13 +5,40 @@ Simple experiment of [Apex: PyTorch Extension with Tools to Realize the Power of
 ### 1.Install Apex package
 [Apex: A PyTorch Extension](https://github.com/NVIDIA/apex)
 ### 2.Train
+
+
 ```
-python CIFAR.py --GPU gpu_name --mode 'FP16' --batch_size 128 --iteration 100
+python CIFAR.py --GPU gpu_name --mode 'FP32' --batch_size 1024 --iteration 10
+==================== Final results ====================
+Train time - mean: 3.50, std 1.71
+Train loss - mean: 0.5006, std 0.5513
+Used memory - mean: 4279.00, std 0.00
+Test time - mean: 1.68, std 0.01
+Test loss : 1.6622
+Test acc : 62.27
+=======================================================
+
+python CIFAR.py --GPU gpu_name --mode 'ampO2' --batch_size 1024 --iteration 10
+==================== Final results ====================
+Train time - mean: 3.49, std 1.47
+Train loss - mean: 0.5184, std 0.5553
+Used memory - mean: 3651.00, std 0.00
+Test time - mean: 1.86, std 0.01
+Test loss : 1.6935
+Test acc : 62.72
+=======================================================
+
+python CIFAR.py --GPU gpu_name --mode 'ampO3' --batch_size 1024 --iteration 10
+==================== Final results ====================
+Train time - mean: 3.64, std 1.52
+Train loss - mean: 0.5196, std 0.5481
+Used memory - mean: 2957.00, std 0.00
+Test time - mean: 1.77, std 0.01
+Test loss : 1.7335
+Test acc : 61.53
+=======================================================
 ```
-### 3.plot (optional)
-```
-python make_plot.py --GPU 'gpu_name1' 'gpu_name2' 'gpu_name3' --method 'FP32' 'FP16' 'amp' --batch 128 256 512 1024 2048
-```
+
 ### Folder structure
 The following shows basic folder structure.
 ```
